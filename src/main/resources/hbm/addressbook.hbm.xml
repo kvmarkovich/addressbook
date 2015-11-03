@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="ua.dp.markos.addressbook.entity.Person" table="PERSON">
+        <id name="id" type="java.lang.Long">
+            <column name="ID"/>
+            <generator class="identity"/>
+        </id>
+        <property name="firstName" type="string" column="F_NAME" length="50" not-null="true" unique="false"/>
+        <property name="middleName" type="string" column="M_NAME" length="50" not-null="false" unique="false"/>
+        <property name="lastName" type="string" column="L_NAME" length="50" not-null="true" unique="false"/>
+        <property name="sex" type="string" column="CLASSIFICATION" length="50" not-null="true" unique="false"/>
+        <property name="dateOfBirth" type="date" column="DATE_OF_BIRTH" length="10" not-null="true" unique="false"/>
+
+        <list name="addresses" cascade="all">
+            <key foreign-key="FK_PERSON_ADDRESS" column="PERSON_ID" not-null="true"/>
+            <list-index column="IDX"/>
+            <one-to-many class="ua.dp.markos.addressbook.entity.Address"/>
+        </list>
+    </class>
+
+    <class name="ua.dp.markos.addressbook.entity.Address" table="ADDRESS">
+        <id name="id" type="java.lang.Long" column="ID">
+            <generator class="identity"/>
+        </id>
+        <property name="ocean" type="string" column="OCEAN" length="50" not-null="true" unique="false"/>
+        <property name="reef" type="string" column="REEF" length="50" not-null="true" unique="false"/>
+        <property name="dept" type="integer" column="DEPT" not-null="true" unique="false"/>
+        <property name="isHome" type="boolean" column="IS_HOME" not-null="true" unique="false"/>
+    </class>
+</hibernate-mapping>

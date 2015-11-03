@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello Spring Boot!</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="../static/css/core.css"
+          th:href="@{/css/core.css}"
+          rel="stylesheet" media="screen"/>
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.2.0/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.1/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.1/jquery.min.js}"></script>
+</head>
+<body>
+<div class="container col-md-12">
+    <h1>LegaSea</h1>
+</div>
+
+<div class="container" th:replace="fragments/menu :: menu">...</div>
+
+<div class="container col-md-12 center-block">
+    <h2 th:text="#{pages.add.add-fish}">Add Fish</h2>
+
+    <div class="col-md-8 center-block">
+
+        <form class="form-horizontal" method="post" th:object="${fish}" action="#" th:action="@{|/add|}">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend>Fish</legend>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="firstName">First Name</label>
+
+                    <div class="col-md-4">
+                        <input id="firstName" th:field="*{firstName}" type="text" placeholder=""
+                               class="form-control input-md" required=""/>
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="middleName">Middle Name</label>
+
+                    <div class="col-md-4">
+                        <input id="middleName" th:field="*{middleName}" type="text" placeholder=""
+                               class="form-control input-md" required=""/>
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="lastName">Last Name</label>
+
+                    <div class="col-md-4">
+                        <input id="lastName" th:field="*{lastName}" type="text" placeholder=""
+                               class="form-control input-md"
+                               required=""/>
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="dateOfBirth">Date of Birth</label>
+
+                    <div class="col-md-4">
+                        <input id="dateOfBirth" name="dateOfBirth" th:field="*{dateOfBirth}" type="text"
+                               placeholder="MM-DD-YYYY" class="form-control input-md" required=""/>
+
+                    </div>
+                </div>
+
+
+                <div class="form-group ">
+                    <label class="col-md-4 control-label" for="sex">Classification</label>
+
+                    <div class="col-md-4">
+                        <select class="select form-control" id="sex" th:field="*{sex}">
+                            <option value=""/>
+                            <option th:each="fishType : ${T(com.pilotfish.pirahnainsurance.redist.PersonType).values()}"
+                                    th:value="${fishType}"
+                                    th:text="${fishType.fishTypeName}">-
+                            </option>
+                        </select>
+
+                    </div>
+                </div>
+
+            </fieldset>
+
+            <button type="submit" class="btn btn-lg btn-success" name="addAddress" th:text="#{pages.add.add-address}">Add address</button>
+
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th th:text="#{pages.add.id}">ocean</th>
+                    <th th:text="#{fish.address.ocean}">ocean</th>
+                    <th th:text="#{fish.address.reef}">reef</th>
+                    <th th:text="#{fish.address.dept}">dept</th>
+                    <th th:text="#{fish.address.ishome}">is home</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="row,rowStat : *{addresses}">
+                    <td th:text="${rowStat.count}">1</td>
+                    <td>
+                        <input type="text" placeholder="" class="form-control input-md"
+                               required="" th:field="*{addresses[__${rowStat.index}__].ocean}"
+                               th:errorclass="fieldError"/>
+                    </td>
+                    <td>
+                        <input type="text" placeholder="" class="form-control input-md"
+                               required="" th:field="*{addresses[__${rowStat.index}__].reef}"
+                               th:errorclass="fieldError"/>
+                    </td>
+                    <td>
+                        <input type="text" placeholder="" class="form-control input-md"
+                               required="" th:field="*{addresses[__${rowStat.index}__].dept}"
+                               th:errorclass="fieldError"/>
+                    </td>
+                    <td>
+                        <input type="checkbox" class="form-control input-md" th:field="*{addresses[__${rowStat.index}__].isHome}"
+                               th:errorclass="fieldError"/>
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-default" name="removeAddress" th:value="${rowStat.index}"
+                                th:text="#{pages.add.remove-address}">Remove row
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+
+            <button type="submit" class="btn btn-lg btn-default" th:text="#{form.submit}"> Submit</button>
+        </form>
+
+
+    </div>
+</div>
+
+</body>
+</html>
