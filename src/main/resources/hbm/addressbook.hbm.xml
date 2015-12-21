@@ -24,9 +24,9 @@
         <id name="id" type="java.lang.Long" column="ID">
             <generator class="identity"/>
         </id>
-        <property name="ocean" type="string" column="OCEAN" length="50" not-null="true" unique="false"/>
-        <property name="reef" type="string" column="REEF" length="50" not-null="true" unique="false"/>
-        <property name="dept" type="integer" column="DEPT" not-null="true" unique="false"/>
+        <property name="city" type="string" column="OCEAN" length="50" not-null="true" unique="false"/>
+        <property name="street" type="string" column="REEF" length="50" not-null="true" unique="false"/>
+        <property name="house" type="integer" column="DEPT" not-null="true" unique="false"/>
         <property name="isHome" type="boolean" column="IS_HOME" not-null="true" unique="false"/>
     </class>
 </hibernate-mapping>

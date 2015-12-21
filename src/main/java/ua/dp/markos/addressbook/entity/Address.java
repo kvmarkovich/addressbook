@@ -7,18 +7,20 @@ import java.io.Serializable;
  */
 public class Address implements Serializable {
     protected Long id;
-    protected String ocean;
-    protected String reef;
-    protected int dept;
+    protected String city;
+    protected String street;
+    protected int house;
+    protected int apartment;
     protected boolean isHome;
 
     public Address() {
     }
 
-    public Address(String ocean, String reef, int dept, boolean isHome) {
-        this.ocean = ocean;
-        this.reef = reef;
-        this.dept = dept;
+    public Address(String city, String street, int house, int apartment, boolean isHome) {
+        this.city = city;
+        this.street = street;
+        this.house = house;
+        this.apartment = apartment;
         this.isHome = isHome;
     }
 
@@ -30,28 +32,36 @@ public class Address implements Serializable {
         this.id = id;
     }
 
-    public String getOcean() {
-        return ocean;
+    public String getCity() {
+        return city;
     }
 
-    public void setOcean(String ocean) {
-        this.ocean = ocean;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public String getReef() {
-        return reef;
+    public String getStreet() {
+        return street;
     }
 
-    public void setReef(String reef) {
-        this.reef = reef;
+    public void setStreet(String street) {
+        this.street = street;
     }
 
-    public int getDept() {
-        return dept;
+    public int getHouse() {
+        return house;
     }
 
-    public void setDept(int dept) {
-        this.dept = dept;
+    public void setHouse(int house) {
+        this.house = house;
+    }
+
+    public int getApartment() {
+        return apartment;
+    }
+
+    public void setApartment(int apartment) {
+        this.apartment = apartment;
     }
 
     public boolean getIsHome() {
@@ -61,7 +71,6 @@ public class Address implements Serializable {
     public void setHome(boolean isHome) {
         this.isHome = isHome;
     }
-
 
     public boolean isHome() {
         return isHome;
@@ -76,21 +85,23 @@ public class Address implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Address)) return false;
 
-        Address that = (Address) o;
+        Address address = (Address) o;
 
-        if (dept != that.dept) return false;
-        if (isHome != that.isHome) return false;
-        if (ocean != null ? !ocean.equals(that.ocean) : that.ocean != null) return false;
-        if (reef != null ? !reef.equals(that.reef) : that.reef != null) return false;
+        if (apartment != address.apartment) return false;
+        if (house != address.house) return false;
+        if (isHome != address.isHome) return false;
+        if (city != null ? !city.equals(address.city) : address.city != null) return false;
+        if (street != null ? !street.equals(address.street) : address.street != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = ocean != null ? ocean.hashCode() : 0;
-        result = 31 * result + (reef != null ? reef.hashCode() : 0);
-        result = 31 * result + dept;
+        int result = city != null ? city.hashCode() : 0;
+        result = 31 * result + (street != null ? street.hashCode() : 0);
+        result = 31 * result + house;
+        result = 31 * result + apartment;
         result = 31 * result + (isHome ? 1 : 0);
         return result;
     }

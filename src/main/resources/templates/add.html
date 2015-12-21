@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hello Spring Boot!</title>
+    <title>Add Person</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="../static/css/core.css"
           th:href="@{/css/core.css}"
@@ -16,21 +16,21 @@
 </head>
 <body>
 <div class="container col-md-12">
-    <h1>LegaSea</h1>
+    <h1>Addressbook</h1>
 </div>
 
 <div class="container" th:replace="fragments/menu :: menu">...</div>
 
 <div class="container col-md-12 center-block">
-    <h2 th:text="#{pages.add.add-fish}">Add Fish</h2>
+    <h2 th:text="#{pages.add.add-person}">Add Person</h2>
 
     <div class="col-md-8 center-block">
 
-        <form class="form-horizontal" method="post" th:object="${fish}" action="#" th:action="@{|/add|}">
+        <form class="form-horizontal" method="post" th:object="${person}" action="#" th:action="@{|/add|}">
             <fieldset>
 
                 <!-- Form Name -->
-                <legend>Fish</legend>
+                <legend>Person</legend>
 
                 <!-- Text input-->
                 <div class="form-group">
@@ -84,9 +84,9 @@
                     <div class="col-md-4">
                         <select class="select form-control" id="sex" th:field="*{sex}">
                             <option value=""/>
-                            <option th:each="fishType : ${T(com.pilotfish.pirahnainsurance.redist.PersonType).values()}"
-                                    th:value="${fishType}"
-                                    th:text="${fishType.fishTypeName}">-
+                            <option th:each="sex : ${T(ua.dp.markos.addressbook.entity.Sex).values()}"
+                                    th:value="${sex}"
+                                    th:text="${sex}">
                             </option>
                         </select>
 
@@ -100,11 +100,12 @@
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <th th:text="#{pages.add.id}">ocean</th>
-                    <th th:text="#{fish.address.ocean}">ocean</th>
-                    <th th:text="#{fish.address.reef}">reef</th>
-                    <th th:text="#{fish.address.dept}">dept</th>
-                    <th th:text="#{fish.address.ishome}">is home</th>
+                    <th th:text="#{pages.add.id}">city</th>
+                    <th th:text="#{person.address.city}">city</th>
+                    <th th:text="#{person.address.street}">street</th>
+                    <th th:text="#{person.address.house}">house</th>
+                    <th th:text="#{person.address.apartment}">apartment</th>
+                    <th th:text="#{person.address.ishome}">is home</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -113,17 +114,22 @@
                     <td th:text="${rowStat.count}">1</td>
                     <td>
                         <input type="text" placeholder="" class="form-control input-md"
-                               required="" th:field="*{addresses[__${rowStat.index}__].ocean}"
+                               required="" th:field="*{addresses[__${rowStat.index}__].city}"
                                th:errorclass="fieldError"/>
                     </td>
                     <td>
                         <input type="text" placeholder="" class="form-control input-md"
-                               required="" th:field="*{addresses[__${rowStat.index}__].reef}"
+                               required="" th:field="*{addresses[__${rowStat.index}__].street}"
                                th:errorclass="fieldError"/>
                     </td>
                     <td>
                         <input type="text" placeholder="" class="form-control input-md"
-                               required="" th:field="*{addresses[__${rowStat.index}__].dept}"
+                               required="" th:field="*{addresses[__${rowStat.index}__].house}"
+                               th:errorclass="fieldError"/>
+                    </td>
+                    <td>
+                        <input type="text" placeholder="" class="form-control input-md"
+                               required="" th:field="*{addresses[__${rowStat.index}__].apartment}"
                                th:errorclass="fieldError"/>
                     </td>
                     <td>

@@ -12,4 +12,4 @@ To deploy application you should go thru next steps:
 >- Run **java -jar addressbook.jar**
 >- Open **http://localhost:8080/** in your browser
 
-If you have any questions please don't hesitate to ask via e-mail
+If you have any questions please don't hesitate to ask via e-mail 

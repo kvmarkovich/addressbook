@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>LegaSea Home</title>
+    <title>Addressbook Home</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="../static/css/core.css"
           th:href="@{/css/core.css}"
@@ -16,13 +16,13 @@
 </head>
 <body>
 <div class="container col-md-12">
-    <h1>LegaSea</h1>
+    <h1>Address book</h1>
 </div>
 
 <div class="container" th:replace="fragments/menu :: menu">...</div>
 
 <div class="container col-md-12 center-block">
-    <h2>Fishes</h2>
+    <h2>People</h2>
 
     <div class="col-md-6 center">
         <table class="table table-bordered table-hover">
@@ -34,17 +34,17 @@
                 <th>Classification</th>
                 <th>Addresses</th>
             </tr>
-            <th:block th:each="fish : ${fishes}">
+            <th:block th:each="person : ${people}">
                 <tr>
-                    <td th:text="${fish.firstName}">...</td>
-                    <td th:text="${fish.middleName}">...</td>
-                    <td th:text="${fish.lastName}">...</td>
-                    <td th:text="${#dates.format(fish.dateOfBirth, 'dd-MM-yyyy')}">...</td>
-                    <td th:text="${fish.sex}">...</td>
+                    <td th:text="${person.firstName}">...</td>
+                    <td th:text="${person.middleName}">...</td>
+                    <td th:text="${person.lastName}">...</td>
+                    <td th:text="${#dates.format(person.dateOfBirth, 'dd-MM-yyyy')}">...</td>
+                    <td th:text="${person.sex}">...</td>
                     <td>
                         <ul>
-                        <th:block th:each="address : ${fish.addresses}">
-                            <li th:text="|Ocean: ${address.ocean}, Reef: ${address.reef}, Dept: ${address.dept}, Is home: ${address.isHome}|">...</li>
+                        <th:block th:each="address : ${person.addresses}">
+                            <li th:text="|City: ${address.city}, Street: ${address.street}, House: ${address.house}, Apartment: ${address.apartment}, Is home: ${address.isHome}|">...</li>
                         </th:block>
                             </ul>
                     </td>

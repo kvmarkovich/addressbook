@@ -33,7 +33,7 @@ public class PersonController {
     private static final Logger LOG = LoggerFactory.getLogger(PersonController.class);
 
     @Autowired
-    IPersonDao fishDao;
+    IPersonDao personDao;
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
@@ -45,7 +45,7 @@ public class PersonController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView index() {
         ModelAndView mav = new ModelAndView("index");
-        mav.addObject("fishes", fishDao.findAll());
+        mav.addObject("people", personDao.findAll());
         return mav;
     }
 
@@ -57,7 +57,7 @@ public class PersonController {
     public
     @ResponseBody
     PersonContainer xml() {
-        List<Person> all = (List<Person>) fishDao.findAll();
+        List<Person> all = (List<Person>) personDao.findAll();
         return new PersonContainer(all);
     }
 
@@ -66,7 +66,7 @@ public class PersonController {
     public ModelAndView add() {
         Person person = new Person();
         person.setDateOfBirth(new Date());
-        ModelAndView modelAndView = new ModelAndView("add", "fish", person);
+        ModelAndView modelAndView = new ModelAndView("add", "person", person);
         return modelAndView;
     }
 
@@ -78,7 +78,7 @@ public class PersonController {
             modelAndView.setViewName("add");
             modelAndView.getModel().put("person", person);
         } else {
-            fishDao.save(person);
+            personDao.save(person);
             modelAndView.setViewName("redirect:/");
         }
         return modelAndView;

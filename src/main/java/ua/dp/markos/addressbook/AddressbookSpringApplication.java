@@ -9,9 +9,9 @@ import org.springframework.boot.context.web.SpringBootServletInitializer;
  * Created by kmarkovych on 22.10.2015.
  */
 @SpringBootApplication
-public class LegaSeaSpringApplication extends SpringBootServletInitializer {
+public class AddressbookSpringApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(LegaSeaSpringApplication.class, args);
+        SpringApplication.run(AddressbookSpringApplication.class, args);
     }
 }
