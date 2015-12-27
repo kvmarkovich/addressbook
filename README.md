@@ -1,4 +1,4 @@
-#LegaSea#
+#Addressbook#
 ##Prerequisities##
 >- Java 1.7 or higher;
 >- MySQL Server 5

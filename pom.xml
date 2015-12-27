@@ -85,7 +85,7 @@
     </dependencies>
 
     <build>
-        <finalName>legasea</finalName>
+        <finalName>addressbook</finalName>
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -117,7 +117,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>ua.dp.markos.addressbook.legasea.LegaSeaSpringApplication</mainClass>
+                            <mainClass>ua.dp.markos.addressbook.AddressbookSpringApplication</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
